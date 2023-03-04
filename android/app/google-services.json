@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "854166500781",
+    "project_id": "online-market-flutter-app",
+    "storage_bucket": "online-market-flutter-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854166500781:android:157fe58fab70b49a6d9d24",
+        "android_client_info": {
+          "package_name": "com.example.online_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854166500781-5lra182akaefhfm34mbha54auq1je7pm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARuLJVGn9yt1R4WN29GXQ1hZAXBWzDoh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854166500781-5lra182akaefhfm34mbha54auq1je7pm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
