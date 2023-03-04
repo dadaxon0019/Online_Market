@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class TextFieldAuth extends StatefulWidget {
   final String hintText;
   final Icon icon;
-  const TextFieldAuth({super.key, required this.hintText, required this.icon});
+  dynamic controller;
+  TextFieldAuth(
+      {super.key,
+      required this.hintText,
+      required this.icon,
+      required this.controller});
 
   @override
   State<TextFieldAuth> createState() => _TextFieldAuthState();
@@ -13,6 +18,7 @@ class _TextFieldAuthState extends State<TextFieldAuth> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       cursorColor: Colors.grey,
       decoration: InputDecoration(
         prefixIcon: widget.icon,

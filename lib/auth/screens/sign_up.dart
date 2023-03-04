@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_market/auth/screens/sign_in.dart';
 import 'package:online_market/auth/widgets/google_button.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
 
@@ -58,7 +59,13 @@ class SignUp extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            SignButton(text: 'Sign with password'),
+            SignButton(
+              text: 'Sign with password',
+              // onTap: () {
+              //   Route route = MaterialPageRoute(builder: (context) => SignIn());
+              //   Navigator.push(context, route);
+              // },
+            ),
             SizedBox(
               height: 30,
             ),
@@ -74,9 +81,16 @@ class SignUp extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  "Sign up",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: () {
+                    Route route =
+                        MaterialPageRoute(builder: (context) => SignIn());
+                    Navigator.push(context, route);
+                  },
+                  child: Text(
+                    "Sign up",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             )
