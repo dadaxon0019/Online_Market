@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/screens/sign_up.dart';
+import 'package:online_market/auth/screens/main_auth_page.dart';
 
 class SignButton extends StatelessWidget {
   final String text;

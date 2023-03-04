@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/screens/sign_in.dart';
-import 'package:online_market/auth/widgets/google_button.dart';
+import 'package:online_market/auth/screens/sign_up_page.dart';
+import 'package:online_market/auth/widgets/big_google_button.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+class MainAuthPage extends StatelessWidget {
+  const MainAuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class SignUp extends StatelessWidget {
               height: 40,
             ),
             SignButton(
-              text: 'Sign with password',
+              text: 'Sign in with password',
               // onTap: () {
               //   Route route = MaterialPageRoute(builder: (context) => SignIn());
               //   Navigator.push(context, route);
@@ -84,7 +84,7 @@ class SignUp extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Route route =
-                        MaterialPageRoute(builder: (context) => SignIn());
+                        MaterialPageRoute(builder: (context) => SignUpPage());
                     Navigator.push(context, route);
                   },
                   child: Text(

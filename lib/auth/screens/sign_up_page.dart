@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/screens/sign_up.dart';
+import 'package:online_market/auth/screens/main_auth_page.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
 
 import '../widgets/small_google_button.dart';
 import '../widgets/text_field_auth.dart';
 
-class SignIn extends StatelessWidget {
+class SignUpPage extends StatelessWidget {
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerPassword = TextEditingController();
 
@@ -32,6 +32,7 @@ class SignIn extends StatelessWidget {
                 Text(
                   'Create your \nAccount',
                   style: TextStyle(
+                    fontFamily: 'Poppins',
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
                   ),
