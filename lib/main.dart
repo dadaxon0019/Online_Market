@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_market/auth/screens/sign_in.dart';
 import 'package:online_market/screens/home_page.dart';
 
 import 'auth/screens/sign_up.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: SignUp(),
+      home: SignIn(),
     );
   }
 }
