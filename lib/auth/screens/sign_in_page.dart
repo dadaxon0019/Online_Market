@@ -8,24 +8,21 @@ import 'package:online_market/auth/widgets/snack_bar.dart';
 import '../widgets/small_google_button.dart';
 import '../widgets/text_field_auth.dart';
 
-class SignUpPage extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
   bool isHiddenPassword = true;
   TextEditingController emailTextInputController = TextEditingController();
   TextEditingController passwordTextInputController = TextEditingController();
-  TextEditingController passwordTextRepeatInputController =
-      TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     emailTextInputController.dispose();
     passwordTextInputController.dispose();
-    passwordTextRepeatInputController.dispose();
 
     super.dispose();
   }
@@ -36,34 +33,24 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
-  Future<void> signUp() async {
+  Future<void> login() async {
     final navigator = Navigator.of(context);
 
-    // var isValid = formKey.currentState!.validate();
+    // final isValid = formKey.currentState!.validate();
     // if (!isValid) return;
 
-    if (passwordTextInputController.text !=
-        passwordTextRepeatInputController.text) {
-      SnackBarService.showSnackBar(
-        context,
-        'Пароли должны совпадать',
-        true,
-      );
-      return;
-    }
-
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailTextInputController.text.trim(),
         password: passwordTextInputController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
       print(e.code);
 
-      if (e.code == 'email-already-in-use') {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         SnackBarService.showSnackBar(
           context,
-          'Такой Email уже используется, повторите попытку с использованием другого Email',
+          'Неправильный email или пароль. Повторите попытку',
           true,
         );
         return;
@@ -73,6 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
           'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
           true,
         );
+        return;
       }
     }
 
@@ -130,36 +118,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   autocorrect: false,
                   controller: passwordTextInputController,
                   obscureText: isHiddenPassword,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) => value != null && value.length < 6
                       ? 'Минимум 6 символов'
                       : null,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     hintText: 'Введите пароль',
-                    suffix: InkWell(
-                      onTap: togglePasswordView,
-                      child: Icon(
-                        isHiddenPassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                TextFormField(
-                  autocorrect: false,
-                  controller: passwordTextRepeatInputController,
-                  obscureText: isHiddenPassword,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) => value != null && value.length < 6
-                      ? 'Минимум 6 символов'
-                      : null,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    hintText: 'Введите пароль еще раз',
                     suffix: InkWell(
                       onTap: togglePasswordView,
                       child: Icon(
@@ -175,20 +140,23 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: signUp,
-                  child: const Center(child: Text('Регистрация')),
+                  onPressed: login,
+                  child: const Center(child: Text('Войти')),
                 ),
-                SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 30),
                 TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => Navigator.of(context).pushNamed('/signup'),
                   child: const Text(
-                    'Войти',
+                    'Регистрация',
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                     ),
                   ),
+                ),
+                TextButton(
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed('/reset_password'),
+                  child: const Text('Сбросить пароль'),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

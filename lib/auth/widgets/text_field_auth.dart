@@ -18,6 +18,7 @@ class _TextFieldAuthState extends State<TextFieldAuth> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      autocorrect: false,
       controller: widget.controller,
       cursorColor: Colors.grey,
       decoration: InputDecoration(
