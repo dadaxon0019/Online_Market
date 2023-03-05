@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_market/auth/screens/sign_in_page.dart';
 import 'package:online_market/auth/screens/sign_up_page.dart';
 import 'package:online_market/auth/widgets/big_google_button.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
@@ -60,6 +61,7 @@ class MainAuthPage extends StatelessWidget {
               height: 40,
             ),
             SignButton(
+              wid: SignInPage(),
               text: 'Sign in with password',
               // onTap: () {
               //   Route route = MaterialPageRoute(builder: (context) => SignIn());

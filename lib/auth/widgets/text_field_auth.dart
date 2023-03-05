@@ -4,10 +4,12 @@ class TextFieldAuth extends StatefulWidget {
   final String hintText;
   final Icon icon;
   dynamic controller;
+  bool obscureText;
   TextFieldAuth(
       {super.key,
       required this.hintText,
       required this.icon,
+      this.obscureText = true,
       required this.controller});
 
   @override
@@ -19,6 +21,7 @@ class _TextFieldAuthState extends State<TextFieldAuth> {
   Widget build(BuildContext context) {
     return TextField(
       autocorrect: false,
+      obscureText: widget.obscureText,
       controller: widget.controller,
       cursorColor: Colors.grey,
       decoration: InputDecoration(

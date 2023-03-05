@@ -83,7 +83,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: [
@@ -97,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Icon(Icons.arrow_back_ios),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
                 Text(
                   'Create your \nAccount',
@@ -108,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 60,
+                  height: 40,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
@@ -119,8 +119,30 @@ class _SignUpPageState extends State<SignUpPage> {
                           ? 'Введите правильный Email'
                           : null,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Введите Email',
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Colors.grey,
+                    ),
+                    hintText: 'Email',
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -135,8 +157,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? 'Минимум 6 символов'
                       : null,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    hintText: 'Введите пароль',
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Colors.grey,
+                    ),
                     suffix: InkWell(
                       onTap: togglePasswordView,
                       child: Icon(
@@ -146,9 +170,29 @@ class _SignUpPageState extends State<SignUpPage> {
                         color: Colors.black,
                       ),
                     ),
+                    hintText: 'Пароль',
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 TextFormField(
                   autocorrect: false,
                   controller: passwordTextRepeatInputController,
@@ -158,8 +202,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? 'Минимум 6 символов'
                       : null,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    hintText: 'Введите пароль еще раз',
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Colors.grey,
+                    ),
                     suffix: InkWell(
                       onTap: togglePasswordView,
                       child: Icon(
@@ -169,26 +215,52 @@ class _SignUpPageState extends State<SignUpPage> {
                         color: Colors.black,
                       ),
                     ),
+                    hintText: 'Пароль',
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: signUp,
-                  child: const Center(child: Text('Регистрация')),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text(
-                    'Войти',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
+                GestureDetector(
+                  onTap: signUp,
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(35),
+                    ),
+                    child: Text(
+                      'Sign up',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -228,8 +300,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text('Sign in',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).pushNamed('/login'),
+                      child: Text('Sign in',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
                   ],
                 ),
               ],

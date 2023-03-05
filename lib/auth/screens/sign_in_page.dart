@@ -1,14 +1,13 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/screens/main_auth_page.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
 import 'package:online_market/auth/widgets/snack_bar.dart';
-
 import '../widgets/small_google_button.dart';
-import '../widgets/text_field_auth.dart';
 
 class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
+
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
@@ -88,7 +87,7 @@ class _SignInPageState extends State<SignInPage> {
                   height: 50,
                 ),
                 Text(
-                  'Create your \nAccount',
+                  'Login to your\nAccount',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     fontSize: 35,
@@ -99,6 +98,7 @@ class _SignInPageState extends State<SignInPage> {
                   height: 60,
                 ),
                 TextFormField(
+                  cursorColor: Colors.grey,
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,
                   controller: emailTextInputController,
@@ -107,8 +107,30 @@ class _SignInPageState extends State<SignInPage> {
                           ? 'Введите правильный Email'
                           : null,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Введите Email',
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Colors.grey,
+                    ),
+                    hintText: 'Email',
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -116,6 +138,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 TextFormField(
                   autocorrect: false,
+                  cursorColor: Colors.grey,
                   controller: passwordTextInputController,
                   obscureText: isHiddenPassword,
                   validator: (value) => value != null && value.length < 6
@@ -123,8 +146,10 @@ class _SignInPageState extends State<SignInPage> {
                       : null,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    hintText: 'Введите пароль',
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Colors.grey,
+                    ),
                     suffix: InkWell(
                       onTap: togglePasswordView,
                       child: Icon(
@@ -134,30 +159,51 @@ class _SignInPageState extends State<SignInPage> {
                         color: Colors.black,
                       ),
                     ),
+                    hintText: 'Пароль',
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: login,
-                  child: const Center(child: Text('Войти')),
-                ),
-                const SizedBox(height: 30),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pushNamed('/signup'),
-                  child: const Text(
-                    'Регистрация',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
+                GestureDetector(
+                  onTap: login,
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(35),
+                    ),
+                    child: Text(
+                      'Sign in',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
-                TextButton(
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed('/reset_password'),
-                  child: const Text('Сбросить пароль'),
-                ),
+                const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -188,7 +234,7 @@ class _SignInPageState extends State<SignInPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Already have an account?',
+                      "Don't have an account?",
                       style: TextStyle(
                         color: Colors.grey,
                       ),
@@ -196,8 +242,11 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text('Sign in',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).pushNamed('/signup'),
+                      child: Text('Sign Up',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
                   ],
                 ),
               ],
