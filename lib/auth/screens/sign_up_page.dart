@@ -1,14 +1,13 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/screens/main_auth_page.dart';
-import 'package:online_market/auth/widgets/sign_button.dart';
 import 'package:online_market/auth/widgets/snack_bar.dart';
 
 import '../widgets/small_google_button.dart';
-import '../widgets/text_field_auth.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -58,8 +57,6 @@ class _SignUpPageState extends State<SignUpPage> {
         password: passwordTextInputController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
-      print(e.code);
-
       if (e.code == 'email-already-in-use') {
         SnackBarService.showSnackBar(
           context,
@@ -85,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: ListView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,12 +91,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.arrow_back_ios),
+                  child: const Icon(Icons.arrow_back_ios),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
-                Text(
+                const Text(
                   'Create your \nAccount',
                   style: TextStyle(
                     fontFamily: 'Poppins',
@@ -107,7 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 TextFormField(
@@ -145,7 +142,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -157,7 +154,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? 'Минимум 6 символов'
                       : null,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.lock,
                       color: Colors.grey,
                     ),
@@ -172,19 +169,19 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     hintText: 'Пароль',
                     filled: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                       ),
                     ),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
@@ -202,7 +199,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? 'Минимум 6 символов'
                       : null,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.lock,
                       color: Colors.grey,
                     ),
@@ -217,19 +214,19 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     hintText: 'Пароль',
                     filled: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                       ),
                     ),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
@@ -237,7 +234,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 GestureDetector(
@@ -250,7 +247,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(35),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Sign up',
                       style: TextStyle(
                         color: Colors.white,
@@ -259,21 +256,21 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text('or continue with'),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     SmallGoogleButton(
                       image: 'assets/image/facebook.png',
                     ),
@@ -285,24 +282,24 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Already have an account?',
                       style: TextStyle(
                         color: Colors.grey,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     GestureDetector(
                       onTap: () => Navigator.of(context).pushNamed('/login'),
-                      child: Text('Sign in',
+                      child: const Text('Sign in',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                   ],

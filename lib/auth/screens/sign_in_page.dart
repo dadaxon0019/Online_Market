@@ -1,7 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/widgets/sign_button.dart';
+import 'package:online_market/auth/helpers/password_form_field.dart';
+import 'package:online_market/auth/helpers/text_form_field_decoration.dart';
 import 'package:online_market/auth/widgets/snack_bar.dart';
 import '../widgets/small_google_button.dart';
 
@@ -44,8 +45,6 @@ class _SignInPageState extends State<SignInPage> {
         password: passwordTextInputController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
-      print(e.code);
-
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         SnackBarService.showSnackBar(
           context,
@@ -72,7 +71,7 @@ class _SignInPageState extends State<SignInPage> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
         child: ListView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,12 +80,12 @@ class _SignInPageState extends State<SignInPage> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.arrow_back_ios),
+                  child: const Icon(Icons.arrow_back_ios),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                Text(
+                const Text(
                   'Login to your\nAccount',
                   style: TextStyle(
                     fontFamily: 'Poppins',
@@ -94,46 +93,21 @@ class _SignInPageState extends State<SignInPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
-                TextFormField(
-                  cursorColor: Colors.grey,
-                  keyboardType: TextInputType.emailAddress,
-                  autocorrect: false,
+                MyTextFormField(
                   controller: emailTextInputController,
                   validator: (email) =>
                       email != null && !EmailValidator.validate(email)
                           ? 'Введите правильный Email'
                           : null,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.email,
-                      color: Colors.grey,
-                    ),
-                    hintText: 'Email',
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                      ),
-                    ),
+                  icon: Icon(
+                    Icons.email,
+                    color: Colors.grey,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -146,7 +120,7 @@ class _SignInPageState extends State<SignInPage> {
                       : null,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.lock,
                       color: Colors.grey,
                     ),
@@ -161,19 +135,19 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     hintText: 'Пароль',
                     filled: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                       ),
                     ),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       borderSide: BorderSide(
                         color: Colors.transparent,
@@ -181,7 +155,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 GestureDetector(
@@ -194,7 +168,7 @@ class _SignInPageState extends State<SignInPage> {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(35),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Sign in',
                       style: TextStyle(
                         color: Colors.white,
@@ -206,16 +180,16 @@ class _SignInPageState extends State<SignInPage> {
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text('or continue with'),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     SmallGoogleButton(
                       image: 'assets/image/facebook.png',
                     ),
@@ -227,24 +201,24 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Don't have an account?",
                       style: TextStyle(
                         color: Colors.grey,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     GestureDetector(
                       onTap: () => Navigator.of(context).pushNamed('/signup'),
-                      child: Text('Sign Up',
+                      child: const Text('Sign Up',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                   ],

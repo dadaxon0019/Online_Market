@@ -1,33 +1,39 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
-class TextFieldAuth extends StatefulWidget {
-  final String hintText;
-  final Icon icon;
-  dynamic controller;
-  bool obscureText;
-  TextFieldAuth(
+class PasswordFormField extends StatelessWidget {
+  final TextEditingController controller;
+  final FormFieldValidator validator;
+  final bool obscureText;
+  final Function onTap;
+  const PasswordFormField(
       {super.key,
-      required this.hintText,
-      required this.icon,
-      this.obscureText = true,
-      required this.controller});
+      required this.controller,
+      required this.validator,
+      required this.obscureText,
+      required this.onTap});
 
-  @override
-  State<TextFieldAuth> createState() => _TextFieldAuthState();
-}
-
-class _TextFieldAuthState extends State<TextFieldAuth> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       autocorrect: false,
-      obscureText: widget.obscureText,
-      controller: widget.controller,
       cursorColor: Colors.grey,
+      controller: controller,
+      obscureText: obscureText,
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-        prefixIcon: widget.icon,
-        hintText: widget.hintText,
+        prefixIcon: const Icon(
+          Icons.lock,
+          color: Colors.grey,
+        ),
+        suffix: InkWell(
+          onTap: onTap(),
+          child: Icon(
+            obscureText ? Icons.visibility_off : Icons.visibility,
+            color: Colors.black,
+          ),
+        ),
+        hintText: 'Пароль',
         filled: true,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0)),

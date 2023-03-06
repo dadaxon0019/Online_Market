@@ -13,12 +13,12 @@ class SmallGoogleButton extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
-          color: Color.fromARGB(84, 158, 158, 158),
+          color: const Color.fromARGB(84, 158, 158, 158),
         ),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Image(
-        image: AssetImage(this.image),
+        image: AssetImage(image),
       ),
     );
   }

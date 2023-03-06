@@ -9,10 +9,11 @@ class GoogleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 15),
       height: 50,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color.fromARGB(82, 117, 115, 115),
+          color: const Color.fromARGB(82, 117, 115, 115),
           width: 1,
         ),
         borderRadius: BorderRadius.circular(10),
@@ -26,17 +27,17 @@ class GoogleButton extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
-                image: AssetImage(this.nameImage),
+                image: AssetImage(nameImage),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Text(
-            this.nameButton,
-            style: TextStyle(
+            nameButton,
+            style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
             ),

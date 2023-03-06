@@ -20,7 +20,7 @@ class MainAuthPage extends StatelessWidget {
             Container(
               width: 200,
               height: 200,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
                       'https://img.freepik.com/free-vector/iso-certification-concept-illustration_114360-6427.jpg?w=2000'),
@@ -28,68 +28,52 @@ class MainAuthPage extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              "Let's you in",
-              style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
+            // BigMainText("Let's you in"),
+            const SizedBox(
               height: 25,
             ),
-            GoogleButton(
+            const GoogleButton(
                 nameButton: 'Continue with Facebook',
                 nameImage: 'assets/image/facebook.png'),
-            SizedBox(
-              height: 15,
-            ),
-            GoogleButton(
+            const GoogleButton(
                 nameButton: 'Continue with Google',
                 nameImage: 'assets/image/google.png'),
-            SizedBox(
-              height: 15,
-            ),
-            GoogleButton(
+            const GoogleButton(
                 nameButton: 'Continue with Apple',
                 nameImage: 'assets/image/apple-logo.png'),
-            SizedBox(
-              height: 40,
+            const SizedBox(
+              height: 25,
             ),
-            Text('or'),
-            SizedBox(
-              height: 40,
+            const Text('or'),
+            const SizedBox(
+              height: 30,
             ),
-            SignButton(
+            const SignButton(
               wid: SignInPage(),
               text: 'Sign in with password',
-              // onTap: () {
-              //   Route route = MaterialPageRoute(builder: (context) => SignIn());
-              //   Navigator.push(context, route);
-              // },
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Don't have an accaunt ?",
                   style: TextStyle(
                     color: Colors.grey,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 GestureDetector(
                   onTap: () {
-                    Route route =
-                        MaterialPageRoute(builder: (context) => SignUpPage());
+                    Route route = MaterialPageRoute(
+                        builder: (context) => const SignUpPage());
                     Navigator.push(context, route);
                   },
-                  child: Text(
+                  child: const Text(
                     "Sign up",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),

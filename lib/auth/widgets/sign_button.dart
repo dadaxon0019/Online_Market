@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/screens/main_auth_page.dart';
 
 class SignButton extends StatelessWidget {
   final String text;
   final Widget wid;
 
-  SignButton({
+  const SignButton({
     super.key,
     required this.text,
     required this.wid,
@@ -27,8 +26,8 @@ class SignButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(35),
         ),
         child: Text(
-          this.text,
-          style: TextStyle(
+          text,
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
           ),

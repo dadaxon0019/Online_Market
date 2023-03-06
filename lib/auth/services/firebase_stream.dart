@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:online_market/auth/screens/main_auth_page.dart';
-import 'package:online_market/auth/screens/sign_up_page.dart';
 import 'package:online_market/screens/home_page.dart';
 
 class FirebaseStream extends StatelessWidget {
@@ -20,7 +19,7 @@ class FirebaseStream extends StatelessWidget {
           );
         } else if (snapshot.hasData) {
           if (!snapshot.data!.emailVerified) {
-            return MainAuthPage();
+            return const MainAuthPage();
           }
           return const HomeScreen();
         } else {

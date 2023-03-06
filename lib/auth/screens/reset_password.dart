@@ -33,8 +33,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailTextInputController.text.trim());
     } on FirebaseAuthException catch (e) {
-      print(e.code);
-
       if (e.code == 'user-not-found') {
         SnackBarService.showSnackBar(
           context,

@@ -45,9 +45,6 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     setState(() {
       isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     });
-
-    print(isEmailVerified);
-
     if (isEmailVerified) timer?.cancel();
   }
 
@@ -61,7 +58,6 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
       setState(() => canResendEmail = true);
     } catch (e) {
-      print(e);
       if (mounted) {
         SnackBarService.showSnackBar(
           context,
