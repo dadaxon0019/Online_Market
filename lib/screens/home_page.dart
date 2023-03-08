@@ -1,10 +1,9 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import '../auth/screens/account_screen.dart';
 import '../model/categories_model.dart';
 import '../model/main_card_product.dart';
 
@@ -49,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
       body: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -60,23 +60,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          pickUploadImage();
+                          Route route = MaterialPageRoute(
+                              builder: (context) => AccountScreen());
+                          Navigator.push(context, route);
                         },
-                        child: imageUrl == " "
-                            ? Icon(
-                                Icons.person,
-                                color: Colors.black,
-                              )
-                            : Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(imageUrl),
-                                      fit: BoxFit.cover),
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                              ),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(imageUrl),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
                       ),
                       SizedBox(
                         width: 15,

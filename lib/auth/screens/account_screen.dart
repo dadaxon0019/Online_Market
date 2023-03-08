@@ -16,7 +16,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
     await FirebaseAuth.instance.signOut();
 
-    navigator.pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+    navigator.pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
   }
 
   @override
