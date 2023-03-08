@@ -1,11 +1,47 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:online_market/auth/screens/sign_in_page.dart';
 
 import '../auth/screens/account_screen.dart';
+import '../model/categories_model.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String imageUrl = '';
+
+  void pickUploadImage() async {
+    final image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 100,
+    );
+
+    Reference ref = FirebaseStorage.instance.ref().child('profile-picture.jpg');
+
+    await ref.putFile(File(image!.path));
+    ref.getDownloadURL().then((value) {
+      setState(() {
+        imageUrl = value;
+      });
+    });
+  }
+
+  List<String> categoriesName = [
+    'Shoes',
+    'Clothes',
+    'Fashion',
+    'Beauty',
+    'Phone',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +57,25 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   child: Row(
                     children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/image/user.png'),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+                      GestureDetector(
+                        onTap: () {
+                          pickUploadImage();
+                        },
+                        child: imageUrl == " "
+                            ? Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              )
+                            : Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(imageUrl),
+                                      fit: BoxFit.cover),
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                              ),
                       ),
                       SizedBox(
                         width: 15,
@@ -93,14 +139,6 @@ class HomeScreen extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(context).size.width,
                       height: 105,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(29, 113, 113, 113),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 105,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 12),
                       decoration: BoxDecoration(
@@ -142,7 +180,7 @@ class HomeScreen extends StatelessWidget {
                           Container(
                             alignment: Alignment.center,
                             width: 108,
-                            height: 44,
+                            height: 40,
                             decoration: BoxDecoration(
                               color: Color(0xff7A9096),
                               borderRadius: BorderRadius.circular(15),
@@ -156,11 +194,27 @@ class HomeScreen extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     )
                   ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  height: 35,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CategoriesModel(
+                        text: categoriesName[index],
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
