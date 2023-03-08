@@ -4,10 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:online_market/auth/screens/sign_in_page.dart';
 
-import '../auth/screens/account_screen.dart';
 import '../model/categories_model.dart';
+import '../model/main_card_product.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -48,11 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      body: SafeArea(
-        child: Scaffold(
-          body: Container(
+      backgroundColor: Color(0xffF5F5F5),
+      body: ListView(
+        children: [
+          Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   child: Row(
@@ -216,10 +217,39 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text('Flash Sale'),
+                SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  height: 190,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (BuildContext context, int index) {
+                        return MainCardProducts();
+                      }),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text('Most Popular'),
+                Container(
+                  height: 190,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (BuildContext context, int index) {
+                        return MainCardProducts();
+                      }),
+                ),
               ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }
