@@ -22,34 +22,36 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios, // add custom icons also
-          ),
-        ),
-        title: const Text('Аккаунт'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            tooltip: 'Open shopping cart',
-            onPressed: () => signOut(),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        child: ListView(
           children: [
-            Text('Ваш Email: ${user?.email}'),
-            TextButton(
-              onPressed: () => signOut(),
-              child: const Text('Выйти'),
+            Text('Profile'),
+            SizedBox(
+              height: 20,
             ),
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text('Dadaxon Turgunboev'),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text('${user?.email}'),
+                ],
+              ),
+            )
           ],
         ),
       ),

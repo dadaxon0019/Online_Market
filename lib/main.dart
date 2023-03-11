@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/reset_password': (context) => const ResetPasswordScreen(),
         '/verify_email': (context) => const VerifyEmailScreen(),
       },
-      initialRoute: '/',
+      initialRoute: '/login',
     );
   }
 }

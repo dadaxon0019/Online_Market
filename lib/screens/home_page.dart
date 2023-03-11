@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import '../auth/screens/account_screen.dart';
 import '../model/categories_model.dart';
 import '../model/main_card_product.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -40,6 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
     'Beauty',
     'Phone',
   ];
+  @override
+  void initState() {
+    loadData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -250,4 +256,29 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+Future<http.Response> getData() async {
+  const url =
+      'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list';
+  return await http.get(
+      Uri.parse(
+        url,
+      ),
+      headers: {
+        'X-RapidAPI-Key': 'de142dd214msh552ddfad664874ep1cb879jsnd504955126fe',
+        'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+      });
+}
+
+void loadData() {
+  getData().then((value) {
+    if (value.statusCode == 200) {
+      print(value.body);
+    } else {
+      print(value.statusCode);
+    }
+  }).catchError((e) {
+    debugPrint(e.toString());
+  });
 }
