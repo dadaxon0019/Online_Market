@@ -49,6 +49,26 @@ class _AccountScreenState extends State<AccountScreen> {
                     height: 5,
                   ),
                   Text('${user?.email}'),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Divider(),
+                  Row(
+                    children: [
+                      Icon(Icons.person),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text('Edit Profile'),
+                      Expanded(child: Container()),
+                      Icon(Icons.arrow_forward_ios)
+                    ],
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        signOut();
+                      },
+                      child: Text('Log out1'))
                 ],
               ),
             )

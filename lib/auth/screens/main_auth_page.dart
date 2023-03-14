@@ -38,9 +38,14 @@ class MainAuthPage extends StatelessWidget {
             const GoogleButton(
                 nameButton: 'Continue with Google',
                 nameImage: 'assets/image/google.png'),
-            const GoogleButton(
-                nameButton: 'Continue with Apple',
-                nameImage: 'assets/image/apple-logo.png'),
+            GestureDetector(
+              onTap: () {
+                print('object');
+              },
+              child: const GoogleButton(
+                  nameButton: 'Continue with Apple',
+                  nameImage: 'assets/image/apple-logo.png'),
+            ),
             const SizedBox(
               height: 25,
             ),
