@@ -64,11 +64,15 @@ class _AccountScreenState extends State<AccountScreen> {
                       Icon(Icons.arrow_forward_ios)
                     ],
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        signOut();
-                      },
-                      child: Text('Log out1'))
+                  GestureDetector(
+                    onTap: signOut,
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )

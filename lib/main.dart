@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:online_market/auth/screens/phone.dart';
 import 'package:online_market/auth/screens/sign_in_page.dart';
 import 'package:online_market/auth/screens/sign_up_page.dart';
 import 'package:online_market/screens/home_page.dart';
 import 'auth/screens/account_screen.dart';
 import 'auth/screens/reset_password.dart';
 import 'auth/screens/verify_email_screen.dart';
+import 'auth/screens/verify_phone.dart';
 import 'auth/services/firebase_stream.dart';
 
 Future<void> main() async {
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignUpPage(),
         '/reset_password': (context) => const ResetPasswordScreen(),
         '/verify_email': (context) => const VerifyEmailScreen(),
+        '/phone': (context) => const MyPhone(),
+        '/verify': (context) => const MyVerify(),
       },
       initialRoute: '/',
     );

@@ -89,9 +89,11 @@ class _MainAuthPageState extends State<MainAuthPage> {
             ),
             InkWell(
               borderRadius: BorderRadius.circular(10),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/phone');
+              },
               child: const GoogleButton(
-                  nameButton: 'Continue with Apple',
+                  nameButton: 'Continue with phone number',
                   nameImage: 'assets/image/apple-logo.png'),
             ),
             const SizedBox(
