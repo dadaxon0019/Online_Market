@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:online_market/data/product_data.dart';
 import '../auth/screens/account_screen.dart';
 import '../model/categories_model.dart';
 import '../model/main_card_product.dart';
@@ -16,24 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String imageUrl = '';
-
-  void pickUploadImage() async {
-    final image = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 100,
-    );
-
-    Reference ref = FirebaseStorage.instance.ref().child('profile-picture.jpg');
-
-    await ref.putFile(File(image!.path));
-    ref.getDownloadURL().then((value) {
-      setState(() {
-        imageUrl = value;
-      });
-    });
-  }
-
   List<String> categoriesName = [
     'Shoes',
     'Clothes',
@@ -41,81 +21,75 @@ class _HomeScreenState extends State<HomeScreen> {
     'Beauty',
     'Phone',
   ];
-  @override
-  void initState() {
-    loadData();
-    super.initState();
-  }
+
+  List<Products> products = [];
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
+    print(products);
 
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
       body: ListView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Route route = MaterialPageRoute(
-                              builder: (context) => AccountScreen());
-                          Navigator.push(context, route);
-                        },
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(imageUrl),
-                                fit: BoxFit.cover),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Route route = MaterialPageRoute(
+                            builder: (context) => AccountScreen());
+                        Navigator.push(context, route);
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(50),
                         ),
                       ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Good Morning',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Good Morning',
+                          style: TextStyle(
+                            color: Colors.grey,
                           ),
-                          Text(
-                            'Dadaxon Turgunboev',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
-                      ),
-                      Expanded(child: Container()),
-                      Icon(
-                        Icons.notifications_outlined,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(
-                        Icons.favorite_outline,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
+                        ),
+                        Text(
+                          'Dadaxon Turgunboev',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
+                    ),
+                    Expanded(child: Container()),
+                    const Icon(
+                      Icons.notifications_outlined,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Icon(
+                      Icons.favorite_outline,
+                      color: Colors.black,
+                    ),
+                  ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Row(
@@ -134,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: MediaQuery.of(context).size.width,
                       height: 105,
                       decoration: BoxDecoration(
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: AssetImage('assets/image/dscounts_img.png'),
                         ),
                         borderRadius: BorderRadius.circular(25),
@@ -189,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Color(0xff7A9096),
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Text(
+                            child: const Text(
                               'See more',
                               style: TextStyle(
                                 fontFamily: 'Poppins',
@@ -204,10 +178,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Container(
+                SizedBox(
                   height: 35,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -220,33 +194,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text('Flash Sale'),
-                SizedBox(
-                  height: 50,
+                const Text('Flash Sale'),
+                const SizedBox(
+                  height: 10,
                 ),
-                Container(
+                SizedBox(
                   height: 190,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,
                       itemBuilder: (BuildContext context, int index) {
-                        return MainCardProducts();
+                        return const MainCardProducts();
                       }),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text('Most Popular'),
-                Container(
+                const Text('Most Popular'),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
                   height: 190,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,
                       itemBuilder: (BuildContext context, int index) {
-                        return MainCardProducts();
+                        return const MainCardProducts();
                       }),
                 ),
               ],
@@ -256,29 +233,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
-
-Future<http.Response> getData() async {
-  const url =
-      'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list';
-  return await http.get(
-      Uri.parse(
-        url,
-      ),
-      headers: {
-        'X-RapidAPI-Key': 'de142dd214msh552ddfad664874ep1cb879jsnd504955126fe',
-        'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-      });
-}
-
-void loadData() {
-  getData().then((value) {
-    if (value.statusCode == 200) {
-      print(value.body);
-    } else {
-      print(value.statusCode);
-    }
-  }).catchError((e) {
-    debugPrint(e.toString());
-  });
 }

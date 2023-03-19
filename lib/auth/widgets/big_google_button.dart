@@ -9,7 +9,6 @@ class GoogleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15),
       height: 50,
       decoration: BoxDecoration(
         border: Border.all(
@@ -38,8 +37,9 @@ class GoogleButton extends StatelessWidget {
           Text(
             nameButton,
             style: const TextStyle(
+              fontFamily: 'Poppins',
               fontSize: 15,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],

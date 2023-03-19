@@ -6,6 +6,8 @@ import 'package:online_market/auth/screens/sign_up_page.dart';
 import 'package:online_market/auth/widgets/big_google_button.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
 
+import '../helpers/big_main_text.dart';
+
 class MainAuthPage extends StatefulWidget {
   const MainAuthPage({super.key});
 
@@ -49,27 +51,45 @@ class _MainAuthPageState extends State<MainAuthPage> {
               height: 200,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(
-                      'https://img.freepik.com/free-vector/iso-certification-concept-illustration_114360-6427.jpg?w=2000'),
+                  image: AssetImage('assets/image/main-auth-img.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            // BigMainText("Let's you in"),
+            Text(
+              "Let's you in",
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+              ),
+            ),
             const SizedBox(
               height: 25,
             ),
-            const GoogleButton(
-                nameButton: 'Continue with Facebook',
-                nameImage: 'assets/image/facebook.png'),
-            GestureDetector(
+            InkWell(
+              onTap: () {},
+              borderRadius: BorderRadius.circular(10),
+              child: const GoogleButton(
+                  nameButton: 'Continue with Facebook',
+                  nameImage: 'assets/image/facebook.png'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(10),
               onTap: signInWithGoogle,
               child: const GoogleButton(
                   nameButton: 'Continue with Google',
                   nameImage: 'assets/image/google.png'),
             ),
-            GestureDetector(
-              onTap: signInWithGoogle,
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {},
               child: const GoogleButton(
                   nameButton: 'Continue with Apple',
                   nameImage: 'assets/image/apple-logo.png'),
