@@ -22,9 +22,14 @@ class SignButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 50,
         decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(35),
-        ),
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(35),
+            boxShadow: [
+              BoxShadow(
+                  color: Color.fromARGB(250, 117, 117, 117),
+                  spreadRadius: 0.8,
+                  blurRadius: 10)
+            ]),
         child: Text(
           text,
           style: const TextStyle(

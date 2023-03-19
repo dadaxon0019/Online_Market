@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:online_market/auth/helpers/password_form_field.dart';
 import 'package:online_market/auth/helpers/text_form_field_decoration.dart';
+import 'package:online_market/auth/screens/reset_password.dart';
 import 'package:online_market/auth/widgets/snack_bar.dart';
 import '../widgets/small_google_button.dart';
 
@@ -165,9 +166,14 @@ class _SignInPageState extends State<SignInPage> {
                     width: MediaQuery.of(context).size.width,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(35),
-                    ),
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(35),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Color.fromARGB(250, 117, 117, 117),
+                              spreadRadius: 0.8,
+                              blurRadius: 10)
+                        ]),
                     child: const Text(
                       'Sign in',
                       style: TextStyle(
@@ -177,7 +183,18 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(
+                  height: 15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Route route = MaterialPageRoute(
+                        builder: ((context) => ResetPasswordScreen()));
+                    Navigator.push(context, route);
+                  },
+                  child: Text('Forgot the password ?'),
+                ),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
