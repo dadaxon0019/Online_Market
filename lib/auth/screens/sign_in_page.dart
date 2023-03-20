@@ -1,8 +1,7 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:online_market/auth/helpers/email_form_text_field.dart';
 import 'package:online_market/auth/helpers/password_form_field.dart';
-import 'package:online_market/auth/helpers/text_form_field_decoration.dart';
 import 'package:online_market/auth/screens/reset_password.dart';
 import 'package:online_market/auth/widgets/snack_bar.dart';
 import '../widgets/small_google_button.dart';
@@ -36,9 +35,6 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<void> login() async {
     final navigator = Navigator.of(context);
-
-    // final isValid = formKey.currentState!.validate();
-    // if (!isValid) return;
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -97,65 +93,11 @@ class _SignInPageState extends State<SignInPage> {
                 const SizedBox(
                   height: 60,
                 ),
-                MyTextFormField(
-                  controller: emailTextInputController,
-                  validator: (email) =>
-                      email != null && !EmailValidator.validate(email)
-                          ? 'Введите правильный Email'
-                          : null,
-                  icon: Icon(
-                    Icons.email,
-                    color: Colors.grey,
-                  ),
+                EmailFormTextField(controller: emailTextInputController),
+                SizedBox(
+                  height: 15,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  autocorrect: false,
-                  cursorColor: Colors.grey,
-                  controller: passwordTextInputController,
-                  obscureText: isHiddenPassword,
-                  validator: (value) => value != null && value.length < 6
-                      ? 'Минимум 6 символов'
-                      : null,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: Colors.grey,
-                    ),
-                    suffix: InkWell(
-                      onTap: togglePasswordView,
-                      child: Icon(
-                        isHiddenPassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Colors.black,
-                      ),
-                    ),
-                    hintText: 'Пароль',
-                    filled: true,
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                ),
+                PasswordFormField(controller: passwordTextInputController),
                 const SizedBox(
                   height: 20,
                 ),

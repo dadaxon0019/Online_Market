@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class GoogleButton extends StatelessWidget {
   final String nameButton;
   final String nameImage;
-  Function onTap;
+  final onTap;
   GoogleButton(
       {super.key,
       required this.nameButton,
@@ -13,9 +13,7 @@ class GoogleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        onTap;
-      },
+      onTap: onTap,
       child: Container(
         height: 50,
         decoration: BoxDecoration(

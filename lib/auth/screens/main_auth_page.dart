@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:online_market/auth/screens/sign_in_page.dart';
 import 'package:online_market/auth/widgets/big_google_button.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
 
@@ -71,7 +70,9 @@ class _MainAuthPageState extends State<MainAuthPage> {
               height: 10,
             ),
             GoogleButton(
-                onTap: signInWithGoogle,
+                onTap: () {
+                  signInWithGoogle();
+                },
                 nameButton: 'Continue with Google',
                 nameImage: 'assets/image/google.png'),
             const SizedBox(
@@ -91,7 +92,9 @@ class _MainAuthPageState extends State<MainAuthPage> {
               height: 30,
             ),
             SignButton(
-              wid: SignInPage(),
+              onTap: () {
+                Navigator.pushNamed(context, '/login');
+              },
               text: 'Sign in with password',
             ),
             const SizedBox(

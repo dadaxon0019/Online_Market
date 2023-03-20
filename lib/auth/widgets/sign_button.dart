@@ -2,22 +2,18 @@ import 'package:flutter/material.dart';
 
 class SignButton extends StatelessWidget {
   final String text;
-  final Widget? wid;
-  final Future<void>? onTap;
+  final onTap;
 
   SignButton({
     super.key,
     required this.text,
-    this.wid,
     this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        await onTap;
-      },
+      onTap: onTap,
       child: Container(
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width,

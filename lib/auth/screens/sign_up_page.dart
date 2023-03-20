@@ -101,16 +101,11 @@ class _SignUpPageState extends State<SignUpPage> {
               height: 20,
             ),
             PasswordFormField(
-                controller: passwordTextInputController,
-                obscureText: isHiddenPassword,
-                onTap: () {
-                  // togglePasswordView();
-                }),
+              controller: passwordTextInputController,
+            ),
             const SizedBox(height: 20),
             PasswordFormField(
               controller: passwordTextRepeatInputController,
-              obscureText: isHiddenPassword,
-              onTap: () {},
             ),
             const SizedBox(
               height: 20,

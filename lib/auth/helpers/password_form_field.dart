@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 
 class PasswordFormField extends StatelessWidget {
   final TextEditingController controller;
-  final bool obscureText;
-  final Function onTap;
-  const PasswordFormField(
-      {super.key,
-      required this.controller,
-      required this.obscureText,
-      required this.onTap});
+  const PasswordFormField({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,37 +13,36 @@ class PasswordFormField extends StatelessWidget {
       autocorrect: false,
       cursorColor: Colors.grey,
       controller: controller,
-      obscureText: obscureText,
+      obscureText: true,
       validator: (value) =>
           value != null && value.length < 6 ? 'Минимум 6 символов' : null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(
           Icons.lock,
           color: Colors.grey,
         ),
         suffix: InkWell(
-          onTap: onTap(),
           child: Icon(
-            obscureText ? Icons.visibility_off : Icons.visibility,
+            Icons.visibility_off,
             color: Colors.black,
           ),
         ),
         hintText: 'Пароль',
         filled: true,
-        border: const OutlineInputBorder(
+        border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0)),
           borderSide: BorderSide(
             color: Colors.transparent,
           ),
         ),
-        enabledBorder: const OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0)),
           borderSide: BorderSide(
             color: Colors.transparent,
           ),
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0)),
           borderSide: BorderSide(
             color: Colors.transparent,
