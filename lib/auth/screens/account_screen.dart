@@ -48,7 +48,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   SizedBox(
                     height: 5,
                   ),
-                  Text('${user?.email}'),
+                  Text('${user?.phoneNumber}'),
                   SizedBox(
                     height: 15,
                   ),

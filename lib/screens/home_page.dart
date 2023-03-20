@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:online_market/data/product_data.dart';
 import '../auth/screens/account_screen.dart';
 import '../model/categories_model.dart';
 import '../model/main_card_product.dart';
@@ -22,12 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
     'Phone',
   ];
 
-  List<Products> products = [];
-
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
-    print(products);
 
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),

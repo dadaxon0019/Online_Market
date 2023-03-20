@@ -2,11 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:online_market/auth/screens/sign_in_page.dart';
-import 'package:online_market/auth/screens/sign_up_page.dart';
 import 'package:online_market/auth/widgets/big_google_button.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
-
-import '../helpers/big_main_text.dart';
 
 class MainAuthPage extends StatefulWidget {
   const MainAuthPage({super.key});
@@ -67,35 +64,26 @@ class _MainAuthPageState extends State<MainAuthPage> {
             const SizedBox(
               height: 25,
             ),
-            InkWell(
-              onTap: () {},
-              borderRadius: BorderRadius.circular(10),
-              child: const GoogleButton(
-                  nameButton: 'Continue with Facebook',
-                  nameImage: 'assets/image/facebook.png'),
-            ),
+            GoogleButton(
+                onTap: () {},
+                nameButton: 'Continue with Facebook',
+                nameImage: 'assets/image/facebook.png'),
             const SizedBox(
               height: 10,
             ),
-            InkWell(
-              borderRadius: BorderRadius.circular(10),
-              onTap: signInWithGoogle,
-              child: const GoogleButton(
-                  nameButton: 'Continue with Google',
-                  nameImage: 'assets/image/google.png'),
-            ),
+            GoogleButton(
+                onTap: signInWithGoogle,
+                nameButton: 'Continue with Google',
+                nameImage: 'assets/image/google.png'),
             const SizedBox(
               height: 10,
             ),
-            InkWell(
-              borderRadius: BorderRadius.circular(10),
-              onTap: () {
-                Navigator.pushNamed(context, '/phone');
-              },
-              child: const GoogleButton(
-                  nameButton: 'Continue with phone number',
-                  nameImage: 'assets/image/apple-logo.png'),
-            ),
+            GoogleButton(
+                onTap: () {
+                  Navigator.pushNamed(context, '/phone');
+                },
+                nameButton: 'Continue with phone number',
+                nameImage: 'assets/image/apple-logo.png'),
             const SizedBox(
               height: 25,
             ),
@@ -124,9 +112,7 @@ class _MainAuthPageState extends State<MainAuthPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Route route = MaterialPageRoute(
-                        builder: (context) => const SignUpPage());
-                    Navigator.push(context, route);
+                    Navigator.pushNamed(context, '/signup');
                   },
                   child: const Text(
                     "Sign up",
