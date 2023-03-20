@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class PasswordFormField extends StatelessWidget {
   final TextEditingController controller;
-  final FormFieldValidator validator;
   final bool obscureText;
   final Function onTap;
   const PasswordFormField(
       {super.key,
       required this.controller,
-      required this.validator,
       required this.obscureText,
       required this.onTap});
 
@@ -19,7 +17,8 @@ class PasswordFormField extends StatelessWidget {
       cursorColor: Colors.grey,
       controller: controller,
       obscureText: obscureText,
-      validator: validator,
+      validator: (value) =>
+          value != null && value.length < 6 ? 'Минимум 6 символов' : null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         prefixIcon: const Icon(

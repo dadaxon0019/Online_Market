@@ -53,10 +53,9 @@ class _MainAuthPageState extends State<MainAuthPage> {
                 ),
               ),
             ),
-            Text(
+            const Text(
               "Let's you in",
               style: TextStyle(
-                fontFamily: 'Poppins',
                 fontWeight: FontWeight.bold,
                 fontSize: 40,
               ),
@@ -91,7 +90,7 @@ class _MainAuthPageState extends State<MainAuthPage> {
             const SizedBox(
               height: 30,
             ),
-            const SignButton(
+            SignButton(
               wid: SignInPage(),
               text: 'Sign in with password',
             ),
