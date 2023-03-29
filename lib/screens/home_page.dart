@@ -1,8 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:online_market/auth/helpers/itemsWidget.dart';
+import 'package:online_market/auth/helpers/utils.dart';
+import 'package:online_market/data/items_data.dart';
+import '../auth/helpers/colors.dart';
 import '../auth/screens/account_screen.dart';
 import '../model/categories_model.dart';
-import '../model/main_card_product.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,31 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: Container(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Route route = MaterialPageRoute(
-                            builder: (context) => AccountScreen());
-                        Navigator.push(context, route);
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/image/user.png'),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage('assets/image/user.png'),
                     ),
                     const SizedBox(
                       width: 15,
@@ -70,17 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                    Expanded(child: Container()),
-                    const Icon(
-                      Icons.notifications_outlined,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(
-                      Icons.favorite_outline,
-                      color: Colors.black,
-                    ),
+                    Spacer(),
+                    iconWidget(FontAwesomeIcons.bagShopping, true),
                   ],
                 ),
                 const SizedBox(
@@ -172,55 +152,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
                 SizedBox(
-                  height: 35,
+                  height: 80,
+                  width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    physics: BouncingScrollPhysics(),
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CategoriesModel(
-                        text: categoriesName[index],
+                    itemCount: data.length,
+                    padding: const EdgeInsets.only(top: 10.0),
+                    itemBuilder: (context, index) {
+                      // for internal padding of text
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          data[index].name,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: index == 0 ? kPrimaryColor : Colors.black45,
+                            fontWeight:
+                                index == 0 ? FontWeight.bold : FontWeight.w400,
+                          ),
+                        ),
                       );
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text('Flash Sale'),
+                ItemsWidget(),
               ],
             ),
           ),
-          Expanded(
-            child: GridView.builder(
-                itemCount: 8,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 15,
-                ),
-                itemBuilder: (context, index) {
-                  return MainCardProducts();
-                }),
-          ),
-
-          // const Text('Most Popular'),
-          // const SizedBox(
-          //   height: 10,
-          // ),
-          // SizedBox(
-          //   height: 190,
-          //   child: ListView.builder(
-          //       scrollDirection: Axis.horizontal,
-          //       itemCount: 5,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return const MainCardProducts();
-          //       }),
-          // ),
-        ],
+        ),
       ),
     );
   }
