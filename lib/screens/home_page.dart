@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../auth/screens/account_screen.dart';
 import '../model/categories_model.dart';
 import '../model/main_card_product.dart';
-import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,15 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
+      body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: Colors.amber,
+                          image: DecorationImage(
+                              image: AssetImage('assets/image/user.png'),
+                              fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -57,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Good Morning',
                           style: TextStyle(
@@ -65,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Text(
-                          'Dadaxon Turgunboev',
+                          'Dadaxon',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -175,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 SizedBox(
                   height: 35,
@@ -191,40 +189,37 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const Text('Flash Sale'),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 190,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int index) {
-                        return const MainCardProducts();
-                      }),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Text('Most Popular'),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 190,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int index) {
-                        return const MainCardProducts();
-                      }),
-                ),
               ],
             ),
           ),
+          Expanded(
+            child: GridView.builder(
+                itemCount: 8,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 15,
+                ),
+                itemBuilder: (context, index) {
+                  return MainCardProducts();
+                }),
+          ),
+
+          // const Text('Most Popular'),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // SizedBox(
+          //   height: 190,
+          //   child: ListView.builder(
+          //       scrollDirection: Axis.horizontal,
+          //       itemCount: 5,
+          //       itemBuilder: (BuildContext context, int index) {
+          //         return const MainCardProducts();
+          //       }),
+          // ),
         ],
       ),
     );

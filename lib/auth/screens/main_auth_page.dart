@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:online_market/auth/services/firebase_sigIN.dart';
 import 'package:online_market/auth/widgets/big_google_button.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
 
@@ -12,28 +11,11 @@ class MainAuthPage extends StatefulWidget {
 }
 
 class _MainAuthPageState extends State<MainAuthPage> {
-  Future<UserCredential> signInWithGoogle() async {
-    final navigator = Navigator.of(context);
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    navigator.pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseSignIn signIn = FirebaseSignIn(context: context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -71,7 +53,7 @@ class _MainAuthPageState extends State<MainAuthPage> {
             ),
             GoogleButton(
                 onTap: () {
-                  signInWithGoogle();
+                  signIn.signInWithGoogle();
                 },
                 nameButton: 'Continue with Google',
                 nameImage: 'assets/image/google.png'),

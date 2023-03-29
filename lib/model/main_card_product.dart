@@ -5,51 +5,63 @@ class MainCardProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 135,
-            height: 135,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoS0pmviIEKIaiPf1GDGVpoRw3iSbsUdWoWg&usqp=CAU'),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(25),
+    return Column(
+      children: [
+        Container(
+          width: 135,
+          height: 135,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/image/product4.png'),
+              fit: BoxFit.cover,
             ),
+            borderRadius: BorderRadius.circular(25),
           ),
-          SizedBox(
-            height: 5,
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Column(
+          children: [
+            Text(
+              'Air Jordan ',
+              style: TextStyle(
+                color: Color.fromARGB(255, 104, 103, 103),
+              ),
+            ),
+            SizedBox(
+              height: 3,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Air Jordan ',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 104, 103, 103),
-                  ),
+                Icon(
+                  Icons.star,
+                  size: 17,
                 ),
+                Text('4.5'),
                 SizedBox(
-                  height: 3,
+                  width: 8,
                 ),
-                Text(
-                  '& 1400',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                Text('|'),
+                SizedBox(
+                  width: 8,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Text(
+                    '8.374 sold',
+                    style: TextStyle(fontSize: 12),
                   ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+      ],
     );
   }
 }
