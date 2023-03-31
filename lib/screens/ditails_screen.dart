@@ -1,11 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../auth/helpers/colors.dart';
 import '../auth/helpers/utils.dart';
-import '../auth/widgets/nutrient_widget.dart';
 import '../data/items_data.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -23,6 +19,15 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   // for quanity count
   int itemCount = 1;
+  bool onTapIcon = false;
+
+  onTappIcon() {
+    print(onTapIcon);
+    setState(() {
+      onTapIcon != onTapIcon;
+      print(onTapIcon);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +37,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
         children: [
           // product image
           Container(
-            height: size.height * 0.50,
             width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.all(20.0),
             color: widget.product.color,
-            child: Transform.rotate(
-              angle: 2.10 * pi,
-              child: Image.asset(widget.product.image),
+            child: Image(
+              image: AssetImage(
+                widget.product.image,
+              ),
+              fit: BoxFit.cover,
             ),
           ),
 
@@ -85,8 +90,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     // product details
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -96,72 +103,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 fontSize: 30,
                               ),
                             ),
-                            const SizedBox(height: 10),
-                            priceWidget(widget.product.price),
+                            Row(
+                              children: [
+                                priceWidget(widget.product.price),
+                                Icon(Icons.star),
+                                Text('asdasd'),
+                              ],
+                            )
                           ],
                         ),
-                        Container(
-                          width: 130,
-                          padding: const EdgeInsets.all(5.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30.0),
-                            boxShadow: boxShadow,
+                        GestureDetector(
+                          onTap: onTappIcon,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Icon(
+                              onTapIcon
+                                  ? FontAwesomeIcons.heartCircleCheck
+                                  : FontAwesomeIcons.heart,
+                              size: 30,
+                            ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // decrease quantity
-                              quantityIcon(
-                                onTap: () {
-                                  if (itemCount > 1) {
-                                    setState(() => itemCount--);
-                                  }
-                                },
-                                color: kSecondaryColor,
-                                icon: FontAwesomeIcons.minus,
-                              ),
-
-                              // quantity count
-                              Text(
-                                itemCount.toString(),
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-
-                              // increase quantity
-                              quantityIcon(
-                                onTap: () {
-                                  setState(() => itemCount++);
-                                },
-                                color: kPrimaryColor,
-                                icon: FontAwesomeIcons.plus,
-                              ),
-                            ],
-                          ),
-                        )
+                        ),
                       ],
-                    ),
-
-                    // product nutrients details
-                    GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.6,
-                      ),
-                      shrinkWrap: true,
-                      primary: false,
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        return NutrientWidget(
-                          product: data[0].products![index],
-                          index: index,
-                        );
-                      },
                     ),
 
                     // product description
@@ -169,7 +132,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             "Details",
                             style: TextStyle(
@@ -181,6 +144,48 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           SizedBox(height: 10),
                           Text(
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                          ),
+                          Container(
+                            width: 130,
+                            padding: const EdgeInsets.all(5.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(30.0),
+                              boxShadow: boxShadow,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // decrease quantity
+                                quantityIcon(
+                                  onTap: () {
+                                    if (itemCount > 1) {
+                                      setState(() => itemCount--);
+                                    }
+                                  },
+                                  color: kSecondaryColor,
+                                  icon: FontAwesomeIcons.minus,
+                                ),
+
+                                // quantity count
+                                Text(
+                                  itemCount.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+
+                                // increase quantity
+                                quantityIcon(
+                                  onTap: () {
+                                    setState(() => itemCount++);
+                                  },
+                                  color: kPrimaryColor,
+                                  icon: FontAwesomeIcons.plus,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

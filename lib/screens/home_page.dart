@@ -4,8 +4,6 @@ import 'package:online_market/auth/helpers/itemsWidget.dart';
 import 'package:online_market/auth/helpers/utils.dart';
 import 'package:online_market/data/items_data.dart';
 import '../auth/helpers/colors.dart';
-import '../auth/screens/account_screen.dart';
-import '../model/categories_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     'Beauty',
     'Phone',
   ];
+  var onTapIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -161,15 +160,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(top: 10.0),
                     itemBuilder: (context, index) {
                       // for internal padding of text
-                      return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          data[index].name,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: index == 0 ? kPrimaryColor : Colors.black45,
-                            fontWeight:
-                                index == 0 ? FontWeight.bold : FontWeight.w400,
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            onTapIndex = index;
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            data[index].name,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: onTapIndex == index
+                                  ? kPrimaryColor
+                                  : Colors.black45,
+                              fontWeight: onTapIndex == index
+                                  ? FontWeight.bold
+                                  : FontWeight.w400,
+                            ),
                           ),
                         ),
                       );

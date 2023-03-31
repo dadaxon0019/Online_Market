@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:online_market/auth/helpers/colors.dart';
 
 final boxShadow = [
   BoxShadow(
@@ -21,13 +21,6 @@ Widget priceWidget(String price) {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const TextSpan(
-          text: " /kg",
-          style: TextStyle(
-            color: Colors.black38,
-            fontWeight: FontWeight.bold,
-          ),
-        )
       ],
     ),
   );
@@ -54,7 +47,7 @@ Widget iconWidget(IconData icon, bool dotExists) {
               width: 8,
               height: 8,
               decoration:
-                  BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
+                  BoxDecoration(color: kPrimaryColor, shape: BoxShape.circle),
             ),
           ),
       ],
