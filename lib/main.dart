@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/screens/phone.dart';
-import 'package:online_market/auth/screens/sign_in_page.dart';
-import 'package:online_market/auth/screens/sign_up_page.dart';
+import 'package:online_market/auth/sigInMethods/Phone%20Number/sign_in_with_phone.dart';
+import 'package:online_market/auth/screens/log_in_page.dart';
+import 'package:online_market/auth/screens/register_page.dart';
 import 'package:online_market/screens/home_page.dart';
 import 'screens/account_screen.dart';
-import 'auth/screens/reset_password.dart';
-import 'auth/screens/verify_phone.dart';
+import 'auth/services/reset_password.dart';
+import 'auth/sigInMethods/Phone Number/verify_phone.dart';
 import 'auth/services/firebase_stream.dart';
 
 Future<void> main() async {

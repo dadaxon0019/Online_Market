@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:online_market/auth/helpers/itemsWidget.dart';
 import 'package:online_market/auth/helpers/utils.dart';
 import 'package:online_market/data/items_data.dart';
 import '../auth/helpers/colors.dart';
@@ -185,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                ItemsWidget(),
+                itemsWidget(),
               ],
             ),
           ),

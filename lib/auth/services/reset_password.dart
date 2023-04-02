@@ -1,10 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/widgets/sign_button.dart';
-
-import '../widgets/snack_bar.dart';
-import '../widgets/text_field_auth.dart';
+import 'package:online_market/auth/helpers/utils.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});

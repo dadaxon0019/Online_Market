@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/helpers/email_form_text_field.dart';
-import 'package:online_market/auth/helpers/password_form_field.dart';
-import 'package:online_market/auth/screens/reset_password.dart';
-import 'package:online_market/auth/widgets/snack_bar.dart';
+import 'package:online_market/auth/helpers/utils.dart';
+import 'package:online_market/auth/widgets/email_form_text_field.dart';
+import 'package:online_market/auth/widgets/password_form_field.dart';
+import 'package:online_market/auth/services/reset_password.dart';
 import '../widgets/small_google_button.dart';
 
 class SignInPage extends StatefulWidget {

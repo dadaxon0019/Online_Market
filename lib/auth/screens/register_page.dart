@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/helpers/password_form_field.dart';
-import 'package:online_market/auth/widgets/snack_bar.dart';
-import '../helpers/email_form_text_field.dart';
+import 'package:online_market/auth/helpers/utils.dart';
+import 'package:online_market/auth/widgets/password_form_field.dart';
+import '../widgets/email_form_text_field.dart';
 import '../widgets/small_google_button.dart';
 
 class SignUpPage extends StatefulWidget {

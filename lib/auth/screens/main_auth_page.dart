@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_market/auth/services/firebase_sigIN.dart';
-import 'package:online_market/auth/widgets/big_google_button.dart';
+import 'package:online_market/auth/helpers/utils.dart';
+import 'package:online_market/auth/sigInMethods/Google/firebase_sigIN.dart';
 import 'package:online_market/auth/widgets/sign_button.dart';
 
 class MainAuthPage extends StatefulWidget {
@@ -44,28 +44,20 @@ class _MainAuthPageState extends State<MainAuthPage> {
             const SizedBox(
               height: 25,
             ),
-            GoogleButton(
-                onTap: () {},
-                nameButton: 'Continue with Facebook',
-                nameImage: 'assets/image/facebook.png'),
+            googleButton(
+                () {}, 'assets/image/facebook.png', 'Continue with Facebook'),
             const SizedBox(
               height: 10,
             ),
-            GoogleButton(
-                onTap: () {
-                  signIn.signInWithGoogle();
-                },
-                nameButton: 'Continue with Google',
-                nameImage: 'assets/image/google.png'),
+            googleButton(() {
+              signIn.signInWithGoogle();
+            }, 'assets/image/google.png', 'Continue with Google'),
             const SizedBox(
               height: 10,
             ),
-            GoogleButton(
-                onTap: () {
-                  Navigator.pushNamed(context, '/phone');
-                },
-                nameButton: 'Continue with phone number',
-                nameImage: 'assets/image/apple-logo.png'),
+            googleButton(() {
+              Navigator.pushNamed(context, '/phone');
+            }, 'assets/image/apple-logo.png', 'Continue with phone number'),
             const SizedBox(
               height: 25,
             ),
@@ -74,11 +66,10 @@ class _MainAuthPageState extends State<MainAuthPage> {
               height: 30,
             ),
             SignButton(
-              onTap: () {
-                Navigator.pushNamed(context, '/login');
-              },
-              text: 'Sign in with password',
-            ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+                text: 'Sign in with password'),
             const SizedBox(
               height: 30,
             ),
