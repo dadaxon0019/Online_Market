@@ -31,7 +31,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future<void> signUp() async {
     final navigator = Navigator.of(context);
-
     if (passwordTextInputController.text !=
         passwordTextRepeatInputController.text) {
       SnackBarService.showSnackBar(
@@ -55,12 +54,13 @@ class _SignUpPageState extends State<SignUpPage> {
           true,
         );
         return;
-      } else {
+      } else if (e.code == 'invalid-email') {
         SnackBarService.showSnackBar(
           context,
-          'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
+          'Не коректный Email, введите правильный Email и попытку',
           true,
         );
+        return;
       }
     }
 
@@ -111,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
               height: 20,
             ),
             GestureDetector(
-              onTap: signUp,
+              onTap: () {},
               child: Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
