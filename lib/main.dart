@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         '/phone': (context) => const MyPhone(),
         '/verify': (context) => const MyVerify(),
       },
-      initialRoute: '/signup',
+      initialRoute: '/',
     );
   }
 }

@@ -111,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
               height: 20,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: signUp,
               child: Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,

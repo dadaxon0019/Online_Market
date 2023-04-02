@@ -42,17 +42,24 @@ class _SignInPageState extends State<SignInPage> {
         password: passwordTextInputController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+      if (e.code == 'user-not-found') {
         SnackBarService.showSnackBar(
           context,
-          'Неправильный email или пароль. Повторите попытку',
+          'Пользователь с таким email не найден',
           true,
         );
         return;
-      } else {
+      } else if (e.code == 'invalid-email') {
         SnackBarService.showSnackBar(
           context,
-          'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
+          'Не коректный Email, введите правильный Email и попытку',
+          true,
+        );
+        return;
+      } else if (e.code == 'wrong-password') {
+        SnackBarService.showSnackBar(
+          context,
+          'Неправильный пароль',
           true,
         );
         return;
